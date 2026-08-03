@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Easy Interactive Canvas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f0f0f0; }
+        .controls { margin-bottom: 15px; }
+        canvas { background-color: white; border: 2px solid #333; cursor: crosshair; display: block; }
+    </style>
+</head>
+<body>
+
+    <h2>Easy Interactive Canvas</h2>
+    <p>1. Upload an image. <br> 2. Left-Click to Zoom In / Right-Click to Zoom Out. <br> 3. Click and Drag your mouse on the blank space to paint!</p>
+
+    <!-- Controls -->
+    <div class="controls">
+        <input type="file" id="imageLoader" accept="image/*">
+        <button onclick="clearCanvas()">Clear Everything</button>
+    </div>
+
+    <!-- Canvas drawing board -->
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+
+    <script>
+        // Set up the canvas and its drawing tool (ctx)
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let img = null;      // Stores the uploaded image
+        let zoom = 1.0;      // Tracks the current zoom level
+        let isDrawing = false; // Tracks if the mouse button is pressed down
+
+        // --- 1. UPLOAD IMAGE LOGIC ---
+        document.getElementById("imageLoader").addEventListener("change", function(e) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                img = new Image();
+                img.onload = function() {
+                    zoom = 1.0; // Reset zoom to normal for new image
+                    drawEverything();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        // --- 2. ZOOM IN & OUT LOGIC ---
+        // Left Click to Zoom In
+        canvas.addEventListener("click", function() {
+            if (img) {
+                zoom += 0.2; 
+                drawEverything();
+            }
+        });
+
+        // Right Click to Zoom Out
+        canvas.addEventListener("contextmenu", function(e) {
+            e.preventDefault(); // Stops the browser's right-click menu from popping up
+            if (img && zoom > 0.2) {
+                zoom -= 0.2;
+                drawEverything();
+            }
+        });
+
+        // --- 3. MOUSE DRAG PAINTING EFFECT LOGIC ---
+        canvas.addEventListener("mousedown", () => isDragging = true);
+        canvas.addEventListener("mouseup", () => isDragging = false);
+        
+        canvas.addEventListener("mousemove", function(e) {
+            if (isDragging) {
+                // Get exact mouse position inside the canvas box
+                let rect = canvas.getBoundingClientRect();
+                let mouseX = e.clientX - rect.left;
+                let mouseY = e.clientY - rect.top;
+
+                // Draw a simple blue circle at the mouse position
+                ctx.fillStyle = "deepskyblue";
+                ctx.beginPath();
+                ctx.arc(mouseX, mouseY, 10, 0, Math.PI * 2); // 10 is the brush size
+                ctx.fill();
+            }
+        });
+
+        // --- 4. RENDER ENGINE & RESET UTILITIES ---
+        function drawEverything() {
+            // Clear the board before redrawing
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (img) {
+                ctx.save();
+                // Move origin point to center and apply zoom scaling matrix
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.scale(zoom, zoom);
+                
+                // Draw image centered inside the zoom window matrix viewport frame
+                ctx.drawImage(img, -img.width / 4, -img.height / 4, img.width / 2, img.height / 2);
+                ctx.restore();
+            }
+        }
+
+        function clearCanvas() {
+            img = null;
+            zoom = 1.0;
+            document.getElementById("imageLoader").value = ""; // Reset file selector input parameter
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+
+</body>
+</html>
