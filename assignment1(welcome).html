@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f2f5; color: #333; }
+        .welcome-container { background: #ffffff; padding: 50px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); text-align: center; max-width: 500px; width: 90%; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .icon { font-size: 4rem; color: #4e54c8; margin-bottom: 20px; display: inline-block; animation: wave 2.5s infinite; transform-origin: 70% 70%; }
+        @keyframes wave { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(-10deg); } 40% { transform: rotate(10deg); } 60% { transform: rotate(-10deg); } 80% { transform: rotate(10deg); } }
+        h1 { font-size: 2.2rem; color: #2c3e50; margin-bottom: 15px; font-weight: 700; }
+        p { color: #7f8c8d; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
+        .btn-logout { display: inline-block; padding: 12px 30px; background-color: #4e54c8; color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3); }
+        .btn-logout:hover { background-color: #3f44a3; transform: scale(1.03); box-shadow: 0 6px 20px rgba(78, 84, 200, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="icon">👋</div>
+        <h1>Welcome to my first webpage</h1>
+        <p>You have successfully logged into your new dashboard area. Explore around and enjoy the brand new clean look.</p>
+        <a href="login.html" class="btn-logout">Log Out</a>
+    </div>
+</body>
+</html>

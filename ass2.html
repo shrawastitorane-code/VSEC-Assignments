@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Marks Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        form { margin-bottom: 20px; }
+        input { margin: 5px; padding: 5px; display: block; width: 200px; }
+        button { margin: 5px; padding: 6px 12px; cursor: pointer; }
+        
+        /* Layout container to place table and percentage box side-by-side */
+        .content-layout { display: flex; gap: 20px; align-items: flex-start; margin-top: 20px; }
+        
+        table { width: 50%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        
+        /* Styling for the percentage box on the side */
+        .side-box { width: 25%; padding: 20px; background-color: #e2e8f0; border: 1px solid #cbd5e1; border-radius: 6px; }
+        .side-box h3 { margin-top: 0; color: #334155; }
+        .stat-value { font-size: 1.5rem; font-weight: bold; color: #4f46e5; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Student Performance Tracker</h2>
+
+    <!-- Input Form -->
+    <form id="marksForm">
+        <input type="text" id="studentName" placeholder="Student Name" required>
+        <input type="number" id="sub1" placeholder="Mathematics Marks" min="0" max="100" required>
+        <input type="number" id="sub2" placeholder="Physics Marks" min="0" max="100" required>
+        <input type="number" id="sub3" placeholder="Chemistry Marks" min="0" max="100" required>
+        <button type="button" onclick="addStudent()">Add Student</button>
+    </form>
+
+    <!-- Side-by-Side Content Layout -->
+    <div class="content-layout">
+        
+        <!-- Data Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Total Marks (300)</th>
+                    <th>Percentage (%)</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- New rows will appear here -->
+            </tbody>
+        </table>
+
+        <!-- Percentage Display Side Box -->
+        <div class="side-box">
+            <h3>Highest Score</h3>
+            <div id="topperName">No students yet</div>
+            <div class="stat-value" id="topperPercent">0.00%</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Track the highest percentage and topper name globally
+        let highestPercentage = -1;
+        let topperName = "";
+
+        function addStudent() {
+            // 1. Get values from the input boxes
+            let name = document.getElementById("studentName").value;
+            let mark1 = parseFloat(document.getElementById("sub1").value);
+            let mark2 = parseFloat(document.getElementById("sub2").value);
+            let mark3 = parseFloat(document.getElementById("sub3").value);
+
+            // Validation check to make sure all boxes are filled
+            if (!name || isNaN(mark1) || isNaN(mark2) || isNaN(mark3)) {
+                alert("Please fill in all boxes correctly!");
+                return;
+            }
+
+            // 2. Calculate Total and Percentage
+            let total = mark1 + mark2 + mark3;
+            let percentage = (total / 300) * 100;
+            percentage = percentage.toFixed(2); // Keep only 2 digits after decimal
+
+            // 3. Add a new row to the table
+            let table = document.getElementById("tableBody");
+            let row = `<tr>
+                        <td>${name}</td>
+                        <td>${total}</td>
+                        <td>${percentage}%</td>
+                       </tr>`;
+            table.innerHTML += row;
+
+            // 4. Check if this student is the new topper
+            if (parseFloat(percentage) > highestPercentage) {
+                highestPercentage = parseFloat(percentage);
+                topperName = name;
+                
+                // Update the side box elements with the new topper text and percentage values
+                document.getElementById("topperName").innerText = "Topper: " + topperName;
+                document.getElementById("topperPercent").innerText = highestPercentage + "%";
+            }
+
+            // 5. Clear the form boxes for the next student entry
+            document.getElementById("marksForm").reset();
+        }
+    </script>
+
+</body>
+</html>

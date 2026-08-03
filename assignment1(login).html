@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .login-box { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 40px; width: 380px; border-radius: 16px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.2); text-align: center; }
+        h2 { color: #ffffff; margin-bottom: 30px; font-weight: 600; font-size: 2rem; letter-spacing: 1px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        input { width: 100%; padding: 14px 20px; background: rgba(255, 255, 255, 0.9); border: none; outline: none; border-radius: 8px; font-size: 1rem; color: #333; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+        input:focus { background: #ffffff; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
+        button { width: 100%; padding: 14px; background: #ff416c; background: linear-gradient(to right, #ff4b2b, #ff416c); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 10px; transition: transform 0.2s, box-shadow 0.2s; }
+        button:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4); }
+        button:active { transform: translateY(1px); }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Login Page</h2>
+        <p>Enter the username and password</p>
+        <form action="welcome.html" method="GET">
+            <div class="input-group">
+                <input type="text" placeholder="Username or Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>
