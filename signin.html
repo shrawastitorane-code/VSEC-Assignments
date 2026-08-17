@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Modern background and clean fonts */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Centered card container with soft shadows */
+        .signup-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 340px;
+        }
+
+        .signup-card h2 {
+            margin: 0 0 24px 0;
+            color: #1a1a1a;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        /* Label and Input layouts using the Box Model */
+        .form-group {
+            margin-bottom: 18px; /* Margin outside elements */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #4a4a4a;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px; /* Padding inside elements */
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box; /* Forces padding to stay within the box width */
+            transition: border-color 0.2s ease;
+        }
+
+        /* Highlight inputs when clicked */
+        .form-group input:focus {
+            border-color: #0066cc;
+            outline: none;
+        }
+
+        /* Styled Action Button */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0052a3;
+        }
+
+        /* Navigation text at the bottom */
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .footer-text a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <h2>Create Account</h2>
+        
+        <!-- Redirects the user directly to login.html on submit -->
+        <form action="login.html" method="GET">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a strong password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+
+        <div class="footer-text">
+            Already have an account? <a href="login.html">Log In</a>
+        </div>
+    </div>
+
+</body>
+</html>
