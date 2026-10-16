@@ -1,0 +1,14 @@
+
+{
+  "name": "ass-7",
+  "version": "1.0.0",
+  "description": "Student Management API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0"
+  }
+}
