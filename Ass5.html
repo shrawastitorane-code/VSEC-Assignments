@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hii Animation</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+           
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 100px 100px;
+           position:relative;
+            cursor: pointer;
+        }
+
+        h1 {
+           position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35px;
+            z-index: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            transition: transform 1s;
+            z-index: 1;
+        }
+
+        .red {
+            background: red;
+            transform-origin: bottom right;
+        }
+
+        .blue {
+            background: blue;
+            transform-origin: bottom left;
+        }
+
+        .green {
+            background: green;
+            transform-origin: top right;
+        }
+
+        .yellow {
+            background: rgb(231, 228, 56);
+            transform-origin: top left;
+        }
+
+        .open .red {
+            transform: translate(-100px, -100px) rotate(-90deg);
+        }
+
+        .open .blue {
+            transform: translate(100px, -100px) rotate(90deg);
+        }
+
+        .open .green {
+            transform: translate(-100px, 100px) rotate(90deg);
+        }
+
+        .open .yellow {
+            transform: translate(100px, 100px) rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" onclick="openBoxes()">
+        <h1>Helloo..</h1>
+        <div class="box red"></div>
+        <div class="box blue"></div>
+        <div class="box green"></div>
+        <div class="box yellow"></div>
+    </div>
+
+    <script>
+        function openBoxes() {
+            let container = document.querySelector(".container");
+
+            container.classList.add("open");
+
+            setTimeout(function() {
+                container.classList.remove("open");
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
